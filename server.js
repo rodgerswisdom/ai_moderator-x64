@@ -1,3 +1,6 @@
+
+const mongoose = require('mongoose');
+
 const express = require('express');
 
 const app = express();
@@ -15,4 +18,6 @@ app.listen(PORT, (error) =>{
         console.log("Error occurred, server can't start", error);
     }
 );
+mongoose.connect('mongodb://127.0.0.1:27017/test')
+  .then(() => console.log('Connected!'));
 
