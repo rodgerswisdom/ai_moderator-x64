@@ -3,9 +3,12 @@ const models = require('mongoose');
 const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
 
-const BlogPost = new Schema({
-  author: ObjectId,
-  title: String,
-  body: String,
-  date: Date
+const User = new Schema({
+  email: String,
+  password: String,
+  major: {
+      Subject: String,
+      Subjects: []
+  },
+  group: String
 });
