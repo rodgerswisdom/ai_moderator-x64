@@ -1,23 +1,24 @@
-
+const path = require('path');
+require('dotenv').config();
+const cors = require('cors');
 const mongoose = require('mongoose');
-
+const routes = require('./routers/routes');
 const express = require('express');
 
 const app = express();
-const PORT = 3000;
+const port = process.env.PORT || 3000;
 
-app.get('/', (req,res)=>{
-    res.send("<h1>Hello World </h1>");
-   }
-);
 
-app.listen(PORT, (error) =>{
+app.use('/api', router);
+
+app.listen(port, (error) =>{
     if(!error)
-        console.log("Server is listening on http://localhost:"+PORT);
+        console.log(`Server Started http://localhost:${port}`);
     else 
         console.log("Error occurred, server can't start", error);
     }
 );
-mongoose.connect('mongodb://127.0.0.1:27017/test')
-  .then(() => console.log('Connected!'));
+mongoose.connect(process.env.DATABASE_URL)
+  .then(() => console.log('Connected!'))
+  .catch(error => console.error(error));
 
