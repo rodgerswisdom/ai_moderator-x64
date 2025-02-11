@@ -4,11 +4,22 @@ const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
 
 const User = new Schema({
-  email: String,
-  password: String,
-  major: {
-      Subject: String,
-      Subjects: []
+    email: {
+        type: String,
+        required: true,
+        unique: true
+    },
+  password: {
+        type: String,
+        required: true
+
   },
-  group: String
+  major: {
+      type: [String]
+  },
+  group: {
+      type: String
+  }
 });
+
+const User = mongoose.model('User', userSchema);
