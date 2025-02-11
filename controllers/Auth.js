@@ -26,6 +26,6 @@ static async signup(req, res){
     } catch (error) {
         res.status(500).json({ error: 'Registration failed' });
 }
+}
 
-
-
+module.exports = Auth;
