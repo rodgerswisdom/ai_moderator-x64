@@ -16,6 +16,8 @@ jwt.verify(token, 'secret_key', (err, decodedToken) => {
   }
 });
 */
+
+class Auth{
 static async signup(req, res){
     try {
         const { email, password, major, group } = req.body;
@@ -27,5 +29,5 @@ static async signup(req, res){
         res.status(500).json({ error: 'Registration failed' });
 }
 }
-
+}
 module.exports = Auth;

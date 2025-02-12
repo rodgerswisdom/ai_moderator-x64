@@ -9,7 +9,10 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 
-app.use('/api', router);
+app.use('/api', routes);
+app.get('/', (req, res)=>{
+    res.send("<h1>AI Moderator</h1>")
+});
 
 app.listen(port, (error) =>{
     if(!error)

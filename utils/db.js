@@ -1,9 +1,9 @@
 const models = require('mongoose');
 
-const Schema = mongoose.Schema;
-const ObjectId = Schema.ObjectId;
+const Schema = models.Schema;
+// const ObjectId = Schema.ObjectId;
 
-const User = new Schema({
+const UserSchema = new Schema({
     email: {
         type: String,
         required: true,
@@ -22,4 +22,4 @@ const User = new Schema({
   }
 });
 
-const User = mongoose.model('User', userSchema);
+const User = models.model('User', UserSchema);
