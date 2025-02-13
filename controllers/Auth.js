@@ -20,7 +20,7 @@ jwt.verify(token, 'secret_key', (err, decodedToken) => {
 class Auth{
 static async signup(req, res){
     
-    let user = await User.findOne({ email: req.body.email })
+    const {email, password, major, group } = req.body;
     if (user) {
         return res.status(400).send('User already exisits. Please sign in')
     } else {
