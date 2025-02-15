@@ -1,6 +1,6 @@
-const models = require('mongoose');
+const mongoose = require('mongoose');
 
-const Schema = models.Schema;
+const Schema = mongoose.Schema;
 // const ObjectId = Schema.ObjectId;
 
 const UserSchema = new Schema({
@@ -22,4 +22,4 @@ const UserSchema = new Schema({
   }
 });
 
-const User = models.model('User', UserSchema);
+module.exports = mongoose.model('User', UserSchema);

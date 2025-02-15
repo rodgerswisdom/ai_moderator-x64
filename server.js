@@ -8,11 +8,8 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
 
-
+app.use(express.json());
 app.use('/api', routes);
-app.get('/', (req, res)=>{
-    res.send("<h1>AI Moderator</h1>")
-});
 
 app.listen(port, (error) =>{
     if(!error)
@@ -22,6 +19,6 @@ app.listen(port, (error) =>{
     }
 );
 mongoose.connect(process.env.DATABASE_URL)
-  .then(() => console.log('Connected!'))
+  .then(() => console.log('Database Connected!'))
   .catch(error => console.error(error));
 
