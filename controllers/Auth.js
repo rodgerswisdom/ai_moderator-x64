@@ -7,7 +7,7 @@ class Auth{
      checkuser({email}){
         return User.findOne({email});  
     }
-
+    
     static async signup(req, res){
    
         const {email, password, major, group} = req.body; 
@@ -37,7 +37,20 @@ class Auth{
     }
 
     static async login(req, res){
-        
+        const {email, password} = req.body;
+
+        const AuthInstance = new Auth();
+
+        let user =  await AuthInstance.checkuser({email});
+
+        if(!user){
+            return res.status(400).send("You dont have an account. Sign up");
+        } 
+
+        let checkpassword = await User.findOne({password});
+        if(checkpassword==={password}){
+            res.status(200).send("Login successful");
+        }        
     }
 
 }
