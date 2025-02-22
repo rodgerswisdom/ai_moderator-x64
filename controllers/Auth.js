@@ -6,7 +6,10 @@ const bcrypt = require('bcrypt');
 class Auth{
 
      checkuser(email){
-        return User.findOne({email});  
+         /**
+          * Accepst object argument only
+          */
+          return User.findOne({email});  
     }
     
     static async signup(req, res){
@@ -39,11 +42,15 @@ class Auth{
     }
 
     static async login(req, res){
+        try{
         const {email, password} = req.body;
 
-
+        /**
+         * Using this to access password, gives an error because it tries to modify a body when the
+         * headers have been sent already
+         *
         // const AuthInstance = new Auth();
-
+        */
         let user =  await User.findOne({email});
 
         if(!user){
@@ -52,18 +59,17 @@ class Auth{
 
         let comparePassword = await bcrypt.compare(password, user.password);
         if(!comparePassword){
-            res.status(401).send("Wrong Password");
+            res.status(401).json({error:"Wrong Password"});
         }
 
         const token = jwt.sign({user_id:user._id}, 'my_secret', {expiresIn:60*60});
         
-        res.status(200).send(`Login successful, token ${token}`);
+        res.status(200).json({token});
     } catch(e){
-        res.status(401).send("Login failed");
-        console.log(e);
+        res.status(500).json({error:"Login failed"});
     }
         
 }
-
+}
 
 module.exports = Auth;
