@@ -7,8 +7,13 @@ export default function App() {
     return (
         <>
             <div className="flex h-screen w-screen">
-                {/* <Login /> */}
-                <Signup />
+                <div className="flex h-screen w-screen">
+                    <h1>educonnect</h1>
+                    <div>
+                        <button>Signup</button>
+                        <button>Login</button>
+                    </div>
+                </div>
             </div>
         </>
     );
