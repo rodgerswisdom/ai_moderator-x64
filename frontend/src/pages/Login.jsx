@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import Button from "../components/ui/Button";
 
 export default function Login() {
     const [email, setEmail] = useState("");
@@ -10,6 +11,7 @@ export default function Login() {
         
         console.log("Email:", email);
         console.log("Password:", password);
+        alert("Email: " + email + " Login Successful");
     };
 
     return (
@@ -42,12 +44,13 @@ export default function Login() {
                         />
                     </div>
                     <div className="flex items-center justify-between">
-                        <button 
+                        {/* <button 
                             type="submit"
                             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                         >
                             Login
-                        </button>
+                        </button> */}
+                        <Button onClick={ handleSubmit } type={"submit"}>Login</Button>
                     </div>
                 </form>
             </div>

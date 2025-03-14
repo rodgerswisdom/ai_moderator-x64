@@ -1,4 +1,4 @@
-const ChatHistory = ({ history, onSelect }) => {
+const ChatHistory = () => {
   return (
     <div className="w-1/4 p-4 bg-gray-200">
       <h1 className="text-black text-lg">CHAT HISTORY</h1>

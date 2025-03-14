@@ -17,7 +17,7 @@ const UserSchema = new Schema({
   major: {
       type: [String]
   },
-  group: {
+  role: {
       type: String
   }
 });

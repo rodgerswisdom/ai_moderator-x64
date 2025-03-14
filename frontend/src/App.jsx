@@ -8,12 +8,14 @@ import { BrowserRouter, Route, Routes } from "react-router-dom"; // FIX: Use 're
 
 export default function App() {
     return (
-        <div className="min-h-screen w-full flex flex-col">
+        <div className="min-h-screen w-full h-screen flex flex-col">
             {/* Navbar Always Visible */}
             <BrowserRouter>
-                <Navbar />
+                
                 <main className="flex-grow bg-gray-100">
+                <Navbar />
                     <Routes>
+                        
                         <Route path="/" element={<Home />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/signup" element={<Signup />} />
