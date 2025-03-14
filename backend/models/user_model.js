@@ -4,22 +4,30 @@ const Schema = mongoose.Schema;
 // const ObjectId = Schema.ObjectId;
 
 const UserSchema = new Schema({
+    f_name: {
+        type: String,
+        required: true,
+    },
+    l_name: {
+        type: String,
+        required: true,
+    },
     email: {
         type: String,
         required: true,
         unique: true
     },
-  password: {
+    password: {
         type: String,
         required: true
 
-  },
-  major: {
-      type: [String]
-  },
-  role: {
-      type: String
-  }
+    },
+    major: {
+        type: [String]
+    },
+    role: {
+        type: String
+    },
 });
 
-module.exports = mongoose.model('ai_user', UserSchema);
+module.exports = mongoose.model('users', UserSchema);
