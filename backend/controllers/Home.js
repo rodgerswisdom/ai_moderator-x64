@@ -6,7 +6,7 @@ class Home{
         try{
             const { message } = req.body;
             const ai_response = await aiService.generate_message(message);
-            console.log(ai_response);
+            // console.log(ai_response);
             if (!ai_response){
                 return res.status(400).json("Error with AI Service");
             }

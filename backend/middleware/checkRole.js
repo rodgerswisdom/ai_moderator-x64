@@ -1,5 +1,4 @@
-const jwt  = require('jsonwebtoken');
-const Role = require('../models/user_model');
+const Role = require('../models/roles');
 
 /**
  * 
