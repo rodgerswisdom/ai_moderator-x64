@@ -58,7 +58,7 @@ class Auth{
                 res.status(401).json({error:"Wrong Password"});
             }
 
-            const token = jwt.sign({user_id:user._id}, 'my_secret', {expiresIn:60*60});
+            const token = jwt.sign({user_id:user._id, user_role:user.role}, 'my_secret', {expiresIn:60*60});
             
             res.status(200).json({token});
         } catch(e){

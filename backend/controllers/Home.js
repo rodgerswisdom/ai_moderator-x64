@@ -1,6 +1,4 @@
-const express = require('express');
-const models = require('../utils/db.js');
-const mainModel = require('../utils/message_model');
+const mainModel = require('../models/moderation_model');
 const aiService = require('../utils/gemini_service');
 
 class Home{

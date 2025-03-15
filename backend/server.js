@@ -19,7 +19,8 @@ app.listen(port, (error) =>{
         console.log("Error occurred, server can't start", error);
     }
 );
+
 mongoose.connect(process.env.DATABASE_URL)
-  .then(() => console.log('Database Connected!'))
-  .catch(error => console.error(error));
+.then(() => console.log('Database Connected!'))
+.catch(error => console.error(error));
 
