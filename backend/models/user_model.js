@@ -26,7 +26,9 @@ const UserSchema = new Schema({
         type: [String]
     },
     role: {
-        type: String
+        ref: 'roles',
+        type: String,
+        required: true
     },
 });
 
