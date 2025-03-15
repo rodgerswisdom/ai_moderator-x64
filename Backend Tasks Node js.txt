@@ -24,34 +24,40 @@ Backend Tasks (Node.js, Express, MongoDB, Gemini API)
 
     POST /signup – Register user
     POST /login – Authenticate user
-    GET /profile – Fetch user profile
+    GET /profile – Fetch user profile - access_profile  
+    
+    ROLES
+    =========================================================
+    student=["read", "submit"]
+    educator=["read", "write", "create_workspace"]
+    admin=["read", "write", "manage_users"]
 
 ✅ Workspace Routes: (/api/workspaces)
 
-    POST /create – Educators create workspaces
-    GET /:id – Fetch workspace details
+    POST /create – Educators create workspaces - create_workspace
+    GET /:id – Fetch workspace details - access_workspace
 
 ✅ Assignment Routes: (/api/assignments)
 
-    POST /create – Educators create assignments
-    GET /workspace/:id – Fetch assignments for a workspace
+    POST /create – Educators create assignments - access_workspace
+    GET /workspace/:id – Fetch assignments for a workspace - access_workspace
 
 ✅ Submission Routes: (/api/submissions)
 
-    POST /submit – Students submit assignments
-    GET /:id – Fetch submission details
-    PUT /:id/revise – Resubmit flagged assignments
+    POST /submit – Students submit assignments - submit_assignment
+    GET /:id – Fetch submission details - access_assignment
+    PUT /:id/revise – Resubmit flagged assignments - submit_assignment
 
 ✅ Review Routes: (/api/reviews)
 
-    POST /:assignmentId – Students add peer reviews
-    GET /:assignmentId – Fetch all reviews for an assignment
-    PUT /:reviewId/upvote – Upvote a comment
+    POST /:assignmentId – Students add peer reviews - create_review
+    GET /:assignmentId – Fetch all reviews for an assignment - access_review
+    PUT /:reviewId/upvote – Upvote a comment - create_review
 
 ✅ AI Moderation Routes: (/api/ai)
 
-    POST /moderate – Educators define AI moderation rules
-    POST /check – Analyze student submission for AI dependency using Gemini API
+    POST /moderate – Educators define AI moderation rules - create_workspace
+    POST /check – Analyze student submission for AI dependency using Gemini API - create_worspace
 
 5. AI Integration (Gemini API)
 
@@ -105,3 +111,14 @@ Frontend Tasks (React.js + Tailwind CSS)
 ✅ Implement responsive design with Tailwind
 ✅ Add loading states & error handling
 ✅ Optimize API calls with caching for efficiency
+
+
+student = ['access_dashboard', 'access_assignment', 'access_grades', 'access_chat', 'edit_assignment', 'access_profile'];
+
+
+TESTS
+======================================
+moderations
+{
+    "message":"Hello"
+}

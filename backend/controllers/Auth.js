@@ -58,7 +58,7 @@ class Auth{
             if(!comparePassword){
                 res.status(401).json({error:"Wrong Password"});
             }
-
+            console.log("PERMISSION:",user.role.permission);
             const token = jwt.sign({user_id:user._id, user_role:user.role}, process.env.TOKEN_SECRET, {expiresIn:60*60});
             
             res.status(200).json({token});

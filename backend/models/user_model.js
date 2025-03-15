@@ -23,11 +23,12 @@ const UserSchema = new Schema({
 
     },
     major: {
-        type: [String]
+        type: [String],
+        default: []
     },
     role: {
-        ref: 'roles',
         type: String,
+        ref: 'user_permissions',
         required: true
     },
 });

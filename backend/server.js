@@ -5,6 +5,8 @@ const mongoose = require('mongoose');
 const routes = require('./routers/routes');
 const express = require('express');
 
+const checkRole = require('./middleware/authorize');
+
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -23,4 +25,3 @@ app.listen(port, (error) =>{
 mongoose.connect(process.env.DATABASE_URL)
 .then(() => console.log('Database Connected!'))
 .catch(error => console.error(error));
-
