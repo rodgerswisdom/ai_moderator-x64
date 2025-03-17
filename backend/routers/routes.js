@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const Auth = require('../controllers/Auth');
-const home = require('../controllers/Chat');
+const Chat = require('../controllers/Chat');
 const Workspace = require('../controllers/Workspace');
 const Assignment = require('../controllers/Assignment');
 const Submission = require('../controllers/Submission');

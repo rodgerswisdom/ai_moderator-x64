@@ -151,6 +151,11 @@ Educator
     "role": "educator"
 }
 
+{
+    "email": "jondoe@example.com",
+    "password": "securepassword"
+}
+
 Assignment
 ===================================
 {
@@ -158,6 +163,14 @@ Assignment
         "description":"Discuss the usage of gRPC in microservices",
         "dueDate":"2025-0s4-30T15:00:00.000Z,
         "workspaceId":"67d76600b3c4fb416504a4e5"
+}
+
+Submission
+=====================================
+{
+"assignmentId":"67d7777a06a449d8c9d6fe21",
+"userId":"67d4fbe887130d8567e2da22",
+"submission":"gRPC is used in microservices for efficient, high-performance communication between services. It leverages HTTP/2, protocol buffers, and bidirectional streaming for low-latency, scalable interactions. gRPC ensures strong typing, automatic code generation, and supports multiple languages, making it ideal for distributed systems requiring fast, reliable, and structured API communication."
 }
 
 
