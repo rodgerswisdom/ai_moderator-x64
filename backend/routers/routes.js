@@ -7,6 +7,7 @@ const auth = require('../middleware/authenticate');
 const checkRole = require('../middleware/authorize');
 const Workspace = require('../controllers/Workspace');
 const Assignment = require('../controllers/Assignment');
+const Submission = require('../controllers/Submission');
 
 
 /**
@@ -24,20 +25,20 @@ router.get('/workspaces/', auth, Workspace.getWorkspace);
 router.get('/workspaces/:id', auth, Workspace.getWorkspaceById);
 router.put('/workspaces/:id', auth, Workspace.addStudent);
 
-// /**
-//  * SUBMISSION ROUTES
-//  */
-// router.post('/submissions', auth, checkRole('submit'), home.submission);    
-// router.get('/submissions/:id', auth, checkRole('read'), home.submission);
-// router.put('/submissions/:id', auth, checkRole('read'), home.submission);   
-
+/**
+ * SUBMISSION ROUTES
+ */
+router.post('/submissions',auth, Submission.createSubmission);
+router.get('/submissions', auth, Submission.getSubmission);
+router.get('/submissions/:id', auth, Submission.getSubmissionById);
+router.put('/submissions', auth, Submission.updateSubmission);
+  
 /**
  * ASSIGNMENT ROUTES
  */
-router.post('/assignments', Assignment.createAssignment);
-router.get('/assignments', Assignment.getAssignment);
-// router.put('/assignments/:id', auth, checkRole('update_assignment'), home.assignment);
-// router.delete('/assignments/:id', auth, checkRole('delete_assignment'), home.assignment);
+router.post('/assignments',auth, Assignment.createAssignment);
+router.get('/assignments',auth, Assignment.getAssignment);
+
 
 // /**
 //  * REVIEW ROUTES
