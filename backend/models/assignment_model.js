@@ -3,20 +3,20 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const AssignmentSchema = new Schema({
-    assignmentId:{
-        type: String
+    title:{
+        type: String,
+        required: true
     },
-    assignmentName:{
-        type: String
+    description:{
+        type: String,
+        required: true
     },
-    assignmentDescription:{
-        type: String
+    workspaceId:{
+        type: String,
+        required: true
     },
-    assignmentDueDate:{
+    dueDate:{
         type: Date
-    },
-    assignmentQuestions:{
-        type: [String]
     },
     assignmentResponses:{
         type: [String]

@@ -6,6 +6,7 @@ const home = require('../controllers/Home');
 const auth = require('../middleware/authenticate');
 const checkRole = require('../middleware/authorize');
 const Workspace = require('../controllers/Workspace');
+const Assignment = require('../controllers/Assignment');
 
 
 /**
@@ -30,10 +31,10 @@ router.put('/workspaces/:id', auth, Workspace.addStudent);
 // router.get('/submissions/:id', auth, checkRole('read'), home.submission);
 // router.put('/submissions/:id', auth, checkRole('read'), home.submission);   
 
-// /**
-//  * ASSIGNMENT ROUTES
-//  */
-// router.post('/assignments', auth, checkRole('create_assignment'), home.assignment);
+/**
+ * ASSIGNMENT ROUTES
+ */
+router.post('/assignments', auth, Assignment.assignment);
 // router.get('/assignments/:id', auth, checkRole('read'), home.assignment);
 // router.put('/assignments/:id', auth, checkRole('update_assignment'), home.assignment);
 // router.delete('/assignments/:id', auth, checkRole('delete_assignment'), home.assignment);

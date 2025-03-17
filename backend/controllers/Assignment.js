@@ -23,12 +23,13 @@ class Assignment{
 
     static async createAssignment(req, res){
         try{
-            const { title, description, dueDate } = req.body;
+            const { title, description, dueDate, workspaceId } = req.body;
 
             const assignment = new assignment({
                 title,
                 description,
-                dueDate
+                dueDate,
+                workspaceId
             });
 
             await assignment.save();
