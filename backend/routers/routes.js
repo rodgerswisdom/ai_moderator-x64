@@ -34,7 +34,7 @@ router.put('/workspaces/:id', auth, Workspace.addStudent);
 /**
  * ASSIGNMENT ROUTES
  */
-router.post('/assignments', auth, Assignment.assignment);
+router.post('/assignments', Assignment.createAssignment);
 // router.get('/assignments/:id', auth, checkRole('read'), home.assignment);
 // router.put('/assignments/:id', auth, checkRole('update_assignment'), home.assignment);
 // router.delete('/assignments/:id', auth, checkRole('delete_assignment'), home.assignment);

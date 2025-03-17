@@ -25,15 +25,17 @@ class Assignment{
         try{
             const { title, description, dueDate, workspaceId } = req.body;
 
-            const assignment = new assignment({
+            const new_assignment = new assignment({
                 title,
                 description,
                 dueDate,
                 workspaceId
             });
 
-            await assignment.save();
-            res.status(201).send(assignment);
+            console.log(new_assignment);
+
+            await new_assignment.save();
+            res.status(201).send(new_assignment);
         }catch(e){
             res.status(400).send(e);
         }
@@ -60,23 +62,6 @@ class Assignment{
         }
     }
 
-    static async addStudent(req, res){
-        try{
-            const assignment = await assignment.findById(req.params.id);
-            if(!assignment){
-                return res.status(404).send("Assignment not found");
-            }
-            const student = await user.findById(req.body.studentId);
-            if(!student){
-                return res.status(404).send("Student not found");
-            }
-            assignment.students.push(student._id);
-            await assignment.save();
-            res.status(200).send(assignment);
-        }catch(e){
-            res.status(400).send(e, "Error adding student to assignment");
-        }
-    }
 }
 
 module.exports = Assignment;
