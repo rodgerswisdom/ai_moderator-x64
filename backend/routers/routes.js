@@ -1,14 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const Auth = require('../controllers/Auth');
-const home = require('../controllers/Home');
 
-const auth = require('../middleware/authenticate');
-const checkRole = require('../middleware/authorize');
+const Auth = require('../controllers/Auth');
+const home = require('../controllers/Chat');
 const Workspace = require('../controllers/Workspace');
 const Assignment = require('../controllers/Assignment');
 const Submission = require('../controllers/Submission');
 
+const auth = require('../middleware/authenticate');
+const checkRole = require('../middleware/authorize');
 
 /**
  * AUTH ROUTES
@@ -40,24 +40,25 @@ router.post('/assignments',auth, Assignment.createAssignment);
 router.get('/assignments',auth, Assignment.getAssignment);
 
 
-// /**
-//  * REVIEW ROUTES
-//  */
+/**
+ * CHAT ROUTES
+ */
+router.post('/chat', auth, Chat.createChat);
+router.get('/chat', auth, Chat.getChats);
+
+/** 
+ * AI MODERATION ROUTES
+ */
+// router.post('/moderation', auth, checkRole('moderate'), .moderation);
+
+/**
+ * REVIEW ROUTES
+ */
 // router.post('/reviews', auth, checkRole('create_review'), home.review);
 // router.get('/reviews/:id', auth, checkRole('read'), home.review);
 // router.put('/reviews/:id', auth, checkRole('update_review'), home.review);
 // router.delete('/reviews/:id', auth, checkRole('delete_review'), home.review);
 
-// /** 
-//  * AI MODERATION ROUTES
-//  */
-// router.post('/moderation', auth, checkRole('moderate'), home.moderation);
-// router.post('/moderation/check', auth, checkRole('moderate'), home.moderation);
-
-// /**
-//  * HOME ROUTE
-//  */
-// router.get('/', home.index);
 
 
 module.exports = router;

@@ -60,3 +60,21 @@ submission
 submit assignment
 update submission
 grade submission - eduactor
+
+
+**create reusable functions for validation checks - isStudent, isEducator, isAuthenticated
+
+ai moderation
+============================================
+a student can ask ai for help. The ai responds according to moderation rules. - the general rules however 
+is to guide and not do.
+
+
+
+
+- chat with ai
+- get rules from db to moderate the chats
+-flag ai  - take text and do ai detection
+
+
+rules for moderation
