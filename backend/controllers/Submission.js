@@ -53,7 +53,7 @@ class Submission {
             }
             res.status(200).send(submission);
         } catch (e) {
-            res.status(400).send(e, "Error fetching submission");
+            res.status(400).send(`Error fetching submissions ${e}`);
         }
     }
 
