@@ -64,7 +64,7 @@ grade submission - eduactor
 
 **create reusable functions for validation checks - isStudent, isEducator, isAuthenticated
 
-ai moderation
+chat
 ============================================
 a student can ask ai for help. The ai responds according to moderation rules. - the general rules however 
 is to guide and not do.
@@ -76,5 +76,5 @@ is to guide and not do.
 - get rules from db to moderate the chats
 -flag ai  - take text and do ai detection
 
-
-rules for moderation
+moderation
+============================

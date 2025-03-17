@@ -1,5 +1,6 @@
 // const mainModel = require('../models/moderation_model');
 const chatModel = require('../models/chat_model');
+const moderationRules = require('../models/moderation_model');
 const aiService = require('../utils/gemini_service');
 
 class Chat{
@@ -9,7 +10,18 @@ class Chat{
 
             const { studentId,message } = req.body;
             // Import rules here
-            const rule = "AI should not provide direct answers to assignments, only guidance.";
+            // const rule = "AI should not provide direct answers to assignments, only guidance.";
+            const rule = await moderationRules.find({});
+            if(!rule){
+                rule = [
+                    "AI should not provide direct answers to assignments, only guidance.",
+                    "Limit AI responses to a maximum of 100 words per response.",
+                    "AI can provide hints and explanations but must not generate full essays or reports.",
+                    "AI should cite sources for external references but should not provide full content.",
+                    "AI should not generate full code solutions; it may only suggest debugging tips"
+                ]
+            }
+            
             const ai_response = await aiService.generate_message(message+rule);
             // console.log(ai_response);
             if (!ai_response){
