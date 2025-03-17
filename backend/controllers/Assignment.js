@@ -32,8 +32,6 @@ class Assignment{
                 workspaceId
             });
 
-            console.log(new_assignment);
-
             await new_assignment.save();
             res.status(201).send(new_assignment);
         }catch(e){
@@ -43,13 +41,15 @@ class Assignment{
 
     static async getAssignment(req, res){
         try{
-            const assignment = await assignment.find({});
-            res.status(200).send(assignment);
+            // refactor this all through the file
+            const my_assignment = await assignment.find({});
+            res.status(200).send(my_assignment);
         }catch(e){
-            res.status(400).send(e, "Error fetching assignments");
+            res.status(400).send(`Error fetching assignment ${e}`);
         }
     }
 
+    // not functional
     static async getAssignmentById(req, res){
         try{
             const assignment = await assignment.findById(req.params.id);
@@ -58,7 +58,7 @@ class Assignment{
             }
             res.status(200).send(assignment);
         }catch(e){
-            res.status(400).send(e, "Error fetching assignment");
+            res.status(400).send(`Error fetching assignment ${e}`);
         }
     }
 
