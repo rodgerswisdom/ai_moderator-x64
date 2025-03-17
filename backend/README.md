@@ -34,3 +34,26 @@ models:
 - review
 - workspace
 - submission
+
+workspace
+=======================
+workspace is represented by majors availlable - 3(Comp Science, Maths, Arts)
+student joins workspace  according to major.
+a student can be in several work spaces.
+
+create workspace - name
+add student to workspace - studentid
+-------------------------------------
+get workspace by id
+
+param - userid
+check if roles is student and add to space
+
+assignment
+================================
+get workspace
+create assignment
+submit assignment
+resubmit assignment
+
+

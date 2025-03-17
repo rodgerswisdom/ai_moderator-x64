@@ -10,13 +10,8 @@ const WorkspaceSchema = new Schema({
     },
     educatorId: {
         type: String,
-        required: true
     },
     students: {
-        type: [String],
-        default: []
-    },
-    channels: {
         type: [String],
         default: []
     }

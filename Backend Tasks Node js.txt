@@ -35,7 +35,7 @@ Backend Tasks (Node.js, Express, MongoDB, Gemini API)
 ✅ Workspace Routes: (/api/workspaces)
 
     POST /create – Educators create workspaces - create_workspace
-    GET /:id – Fetch workspace details - access_workspace
+    GET /:id – Fetch workspace details - read
 
 ✅ Assignment Routes: (/api/assignments)
 
@@ -121,4 +121,21 @@ TESTS
 moderations
 {
     "message":"Hello"
+}
+
+login
+=========================
+{
+    "email":"hawona1234@example.com",
+    "password":"password"
+}
+
+
+{
+    "f_name": "John",
+    "l_name": "Doe",
+    "email": "johndoe@example.com",
+    "password": "securepassword",
+    "major": ["Computer Science"],
+    "role": "student"
 }

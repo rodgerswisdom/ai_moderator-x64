@@ -67,6 +67,16 @@ class Auth{
         }
         
     }
+    
+    static async profile(req, res){
+        try{
+            
+            const user = await User.findById(req.user.user_id);
+            res.status(200).json(user);
+        } catch(e){
+            res.status(500).json({error:"Profile not found"});
+        }
+    }
 
 }
 
