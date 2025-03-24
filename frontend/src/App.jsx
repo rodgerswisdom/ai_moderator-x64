@@ -1,27 +1,67 @@
-import React from "react";
-import Login from "./pages/Login";
-import Signup from "./pages/SignUp";
-import Home from "./pages/Home";
-import Navbar from "./components/layout/Navbar";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
+import { ProtectedRoute } from './components/ProtectedRoute';
+import './App.css';
 
-import { BrowserRouter, Route, Routes } from "react-router-dom"; // FIX: Use 'react-router-dom'
+// Import pages (you'll need to create these)
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+import Dashboard from './pages/Dashboard';
+import Workspace from './pages/Workspace';
+import Assignment from './pages/Assignment';
+import Unauthorized from './pages/Unauthorized';
 
-export default function App() {
-    return (
-        <div className="min-h-screen w-full h-screen flex flex-col">
-            {/* Navbar Always Visible */}
-            <BrowserRouter>
-                
-                <main className="flex-grow bg-gray-100">
-                <Navbar />
-                    <Routes>
-                        
-                        <Route path="/" element={<Home />} />
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/signup" element={<Signup />} />
-                    </Routes>
-                </main>
-            </BrowserRouter>
+function App() {
+  return (
+    <Router>
+      <AuthProvider>
+        <div className="min-h-screen bg-gray-100">
+          <Routes>
+            {/* Public routes */}
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/unauthorized" element={<Unauthorized />} />
+
+            {/* Protected routes */}
+            <Route
+              path="/"
+              element={
+                <ProtectedRoute>
+                  <Dashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/workspace/:id"
+              element={
+                <ProtectedRoute>
+                  <Workspace />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/assignment/:id"
+              element={
+                <ProtectedRoute>
+                  <Assignment />
+                </ProtectedRoute>
+              }
+            />
+
+            {/* Educator-only routes */}
+            <Route
+              path="/educator/*"
+              element={
+                <ProtectedRoute allowedRoles={['educator']}>
+                  <Dashboard />
+                </ProtectedRoute>
+              }
+            />
+          </Routes>
         </div>
-    );
+      </AuthProvider>
+    </Router>
+  );
 }
+
+export default App;
