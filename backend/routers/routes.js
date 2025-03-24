@@ -43,7 +43,7 @@ router.get('/assignments',auth, Assignment.getAssignment);
 /**
  * CHAT ROUTES
  */
-router.post('/chat', Chat.createChat);
+router.post('/chat', auth,Chat.createChat);
 router.get('/chat', auth, Chat.getChats);
 
 /** 
