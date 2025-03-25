@@ -70,11 +70,15 @@ class Auth{
     
     static async profile(req, res){
         try{
-            
-            const user = await User.findById(req.user.user_id);
+            const user = await User.findById(req.user.user_id).select("-password");
+
+            if (!user){
+                res.status(404).json("User not found");
+            }
+
             res.status(200).json(user);
         } catch(e){
-            res.status(500).json({error:"Profile not found"});
+            res.status(500).json({error:"Error fetching profile"});
         }
     }
 
