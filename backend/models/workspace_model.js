@@ -10,6 +10,7 @@ const WorkspaceSchema = new Schema({
     },
     educatorId: {
         type: String,
+        required: true
     },
     students: {
         type: [String],
