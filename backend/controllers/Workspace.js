@@ -23,10 +23,12 @@ class Workspace{
 
     static async createWorkspace(req, res){
         try{
-            const { name } = req.body;
+            const { name, students, educatorId } = req.body;
 
             const workspace = new space({
-                name
+                name,
+                students,
+                educatorId,
             });
 
             await workspace.save();
@@ -44,19 +46,25 @@ class Workspace{
             res.status(400).send(e, "Error fetching workspaces");
         }
     }
+    // gets workspace by educators id
+    static async getWorkspaceById(req, res) {
+    try {
+        const educatorId = req.params.id;
 
-    static async getWorkspaceById(req, res){
-        try{
-            const workspace = await space.findById(req.params.id);
-            if(!workspace){
-                return res.status(404).send("Workspace not found");
-            }
-            res.status(200).send(workspace);
-        }catch(e){
-            res.status(400).send(e, "Error fetching workspace");
+        const workspaces = await space.find({ educatorId });
+
+        if (!workspaces.length) {
+            return res.status(404).json({ message: "No workspaces found for this educator" });
         }
-    }
 
+        res.status(200).json(workspaces);
+    } catch (error) {
+        console.error("Error fetching workspaces:", error);
+        res.status(500).json({ message: "Internal Server Error", error: error.message });
+    }
+}
+
+ 
     static async addStudent(req, res){
         try{
             
