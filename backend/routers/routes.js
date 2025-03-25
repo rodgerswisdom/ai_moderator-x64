@@ -38,6 +38,7 @@ router.put('/submissions/:id', auth, Submission.updateSubmission);
  */
 router.post('/assignments',auth, Assignment.createAssignment);
 router.get('/assignments',auth, Assignment.getAssignment);
+router.get('/assignments/:workspaceId', auth, Assignment.getAssignmentById);
 
 
 /**
