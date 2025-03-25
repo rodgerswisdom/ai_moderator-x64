@@ -49,16 +49,24 @@ class Assignment{
         }
     }
 
-    // not functional
+
     static async getAssignmentById(req, res){
         try{
-            const assignment = await assignment.findById(req.params.id);
-            if(!assignment){
+            console.log("PARAMS===", req.params);
+            const workspaceId = req.params.workspaceId;
+
+            if(!workspaceId){
+                res.status(404).send("No assignment for this workspace");
+            }
+
+            const Assignment = await assignment.find({ workspaceId });
+
+            if(!Assignment){
                 return res.status(404).send("Assignment not found");
             }
-            res.status(200).send(assignment);
+            res.status(200).json(Assignment);
         }catch(e){
-            res.status(400).send(`Error fetching assignment ${e}`);
+            res.status(400).json(`Error fetching assignment ${e}`);
         }
     }
 
