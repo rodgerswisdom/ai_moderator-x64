@@ -16,26 +16,38 @@ export const AuthProvider = ({ children }) => {
       const token = localStorage.getItem('token');
       if (token) {
         const userData = await authService.getProfile();
+        console.log('Authenticated User:', userData);
         setUser(userData);
       }
     } catch (error) {
-      console.error('Auth check failed:', error);
+      console.error('Authentication check failed:', error);
       localStorage.removeItem('token');
+      setUser(null);
     } finally {
       setLoading(false);
     }
   };
 
   const login = async (email, password) => {
-    const userData = await authService.login(email, password);
-    setUser(userData);
-    return userData;
+    try {
+      const userData = await authService.login(email, password);
+      setUser(userData);
+      return userData;
+    } catch (error) {
+      console.error('Login failed:', error);
+      throw error;
+    }
   };
 
   const signup = async (userData) => {
-    const response = await authService.signup(userData);
-    setUser(response);
-    return response;
+    try {
+      const response = await authService.signup(userData);
+      setUser(response);
+      return response;
+    } catch (error) {
+      console.error('Signup failed:', error);
+      throw error;
+    }
   };
 
   const logout = () => {
@@ -54,11 +66,11 @@ export const AuthProvider = ({ children }) => {
     isStudent: user?.role === 'student',
   };
 
-  return (
-    <AuthContext.Provider value={value}>
-      {!loading && children}
-    </AuthContext.Provider>
-  );
+  if (loading) {
+    return <div>Loading...</div>; // Fallback UI while checking auth
+  }
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
 export const useAuth = () => {
@@ -67,4 +79,4 @@ export const useAuth = () => {
     throw new Error('useAuth must be used within an AuthProvider');
   }
   return context;
-}; 
+};

@@ -26,7 +26,7 @@ export default function Dashboard() {
   };
 
   const handleCreateWorkspace = () => {
-    navigate('/workspace/create');
+    navigate('/workspaces');
   };
 
   if (loading) {

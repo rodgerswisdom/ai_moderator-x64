@@ -5,7 +5,7 @@ import './App.css';
 
 // Import pages (you'll need to create these)
 import Login from './pages/Login';
-import Signup from './pages/Signup';
+import Signup from './pages/SignUp';
 import Dashboard from './pages/Dashboard';
 import Workspace from './pages/Workspace';
 import Assignment from './pages/Assignment';
@@ -32,7 +32,7 @@ function App() {
               }
             />
             <Route
-              path="/workspace/:id"
+              path="/workspaces/:id"
               element={
                 <ProtectedRoute>
                   <Workspace />
