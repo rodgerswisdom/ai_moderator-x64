@@ -15,7 +15,7 @@ const checkRole = require('../middleware/authorize');
  */
 router.post('/signup', Auth.signup);
 router.post('/login', Auth.login);
-// router.get('/profile', Auth.profile);
+router.get('/profile/', auth, Auth.profile);
 
 /**
  * WORKSPACE ROUTES
