@@ -97,7 +97,7 @@ export const workspaceService = {
       handleApiError(error, "Get Workspaces");
     }
   },
-
+// Educator id
   getWorkspace: async (id) => {
     try {
       const response = await api.get(`/workspaces/${id}`);
