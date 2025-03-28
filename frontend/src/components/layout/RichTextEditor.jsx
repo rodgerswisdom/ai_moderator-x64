@@ -15,13 +15,17 @@ import { useAuth } from '../../context/AuthContext'; // Import to get the curren
 
 export default function RichTextEditor({ assignmentId }) {
   const [value, setValue] = useState('');
+  const [submitting, setSubmitting] = useState(false); // Track submission state
   const { user } = useAuth(); // Get the current user (student)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (submitting) return; // Prevent multiple submissions
+    setSubmitting(true); // Set submitting state to true
+
     try {
       const submissionData = {
-        assignmentId:"1", // ID of the assignment
+        assignmentId, // ID of the assignment
         studentId: user._id, // ID of the current student
         submission: value, // The content of the editor
       };
@@ -31,6 +35,8 @@ export default function RichTextEditor({ assignmentId }) {
     } catch (error) {
       console.error('Error submitting assignment:', error);
       alert('Failed to submit the assignment. Please try again.');
+    } finally {
+      setSubmitting(false); // Reset submitting state
     }
   };
 
@@ -43,7 +49,9 @@ export default function RichTextEditor({ assignmentId }) {
         <Inject services={[Toolbar, Image, Link, HtmlEditor, QuickToolbar]} />
       </RichTextEditorComponent>
       <div className="mt-4">
-        <Button onClick={handleSubmit}>Submit</Button>
+        <Button onClick={handleSubmit} disabled={submitting}>
+          {submitting ? 'Submitting...' : 'Submit'}
+        </Button>
       </div>
     </div>
   );
