@@ -36,7 +36,7 @@ class Chat{
 
             await dataToSave.save();
 
-            return res.status(200).json(`Successful ${dataToSave}`);
+            return res.status(200).json(dataToSave);
 
         } catch(e){
             console.log(e);
