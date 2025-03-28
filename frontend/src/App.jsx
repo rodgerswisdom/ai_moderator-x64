@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { ProtectedRoute } from './components/ProtectedRoute';
-import './App.css';
+// import './App.css';
 
 // Import pages (you'll need to create these)
 import Login from './pages/Login';
@@ -15,7 +15,7 @@ function App() {
   return (
     <Router>
       <AuthProvider>
-        <div className="min-h-screen bg-gray-100">
+      <div className="h-screen w-screen flex flex-col text-center items-center ">
           <Routes>
             {/* Public routes */}
             <Route path="/login" element={<Login />} />

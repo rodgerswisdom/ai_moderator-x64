@@ -15,3 +15,5 @@ if educator, present workspace and information
 if student - introduce interactive editor, chat,  and workspace
 
 check if workspaces where studentid in workspace.students[];
+
+implement chat

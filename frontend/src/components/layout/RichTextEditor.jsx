@@ -30,7 +30,6 @@ export default function RichTextEditor({ assignmentId }) {
         submission: value, // The content of the editor
       };
       const response = await submissionService.createSubmission(submissionData);
-      console.log('Submission successful:', response);
       alert('Submission successful!');
     } catch (error) {
       console.error('Error submitting assignment:', error);
@@ -41,7 +40,7 @@ export default function RichTextEditor({ assignmentId }) {
   };
 
   return (
-    <div className="col-span-9 bg-gray-100 p-4 rounded-lg shadow-md h-screen">
+    <div className="col-span-9 bg-gray-100 p-4 rounded-lg shadow-md h-full">
       <RichTextEditorComponent
         height={600}
         change={(e) => setValue(e.value)} // Update the state when the content changes

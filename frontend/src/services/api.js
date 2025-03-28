@@ -198,7 +198,7 @@ export const submissionService = {
   },
 };
 
-// Chat services
+// Chat services - takes studentId and message
 export const chatService = {
   createChat: async (chatData) => {
     try {

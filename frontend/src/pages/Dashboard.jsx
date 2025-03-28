@@ -78,8 +78,8 @@ export default function Dashboard() {
 
   if (isStudent) {
     return (
-      <div className="container mx-auto px-4 py-8">
-        <div className="grid grid-cols-12 gap-4 min-h-screen">
+      <div className="container mx-auto px-4 py-8  bg-gray-100 w-screen h-screen">
+        <div className="grid grid-cols-12 gap-4 h-full">
           {/* Left Panel: Student Profile and Workspaces */}
           <div className="col-span-3 bg-gray-100 p-4 rounded-lg shadow-md">
             <h2 className="text-xl font-bold mb-4">Welcome, {user?.f_name} {user?.l_name}</h2>
@@ -125,7 +125,6 @@ export default function Dashboard() {
 
           {/* Right Panel: Chat Interface */}
           <div className="col-span-3 bg-gray-100 p-4 rounded-lg shadow-md">
-            <h2 className="text-xl font-bold mb-4">Chat Assistant</h2>
             <ChatWindow />
           </div>
         </div>
