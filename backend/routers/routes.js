@@ -23,6 +23,7 @@ router.get('/profile/', auth, Auth.profile);
 router.post('/workspaces', auth, Workspace.createWorkspace);
 router.get('/workspaces/', auth, Workspace.getWorkspace);
 router.get('/workspaces/:id', auth, Workspace.getWorkspaceById);
+router.get('/workspaces/student/:id', auth, Workspace.getStudentWorkspace);
 router.put('/workspaces/:id', auth, Workspace.addStudent);
 
 /**
