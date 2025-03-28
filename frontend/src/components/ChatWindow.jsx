@@ -21,7 +21,7 @@ const ChatWindow = () => {
     <div className="flex flex-col h-screen bg-gray-100 w-1/2 p-4">
       <h1 className="text-xl font-semibold text-black mb-4">Chat Window</h1>
       
-
+  
 {/* Chat Input */}
 <div className="border rounded-xl p-4 shadow-md bg-white w-screen max-w-lg mt-2">
         <div className="flex items-center space-x-2 mb-2">

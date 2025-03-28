@@ -107,6 +107,16 @@ export const workspaceService = {
     }
   },
 
+  // Student id
+  getStudentWorkspace: async (id) => {
+    try {
+      const response = await api.get(`/workspaces/student/${id}`);
+      return response.data;
+    } catch (error) {
+      handleApiError(error, "Get Workspace");
+    }
+  },
+
   addStudent: async (id, studentId) => {
     try {
       const response = await api.patch(`/workspaces/${id}`, { studentId });
@@ -131,6 +141,17 @@ export const assignmentService = {
   getAssignments: async () => {
     try {
       const response = await api.get("/assignments");
+      return response.data;
+    } catch (error) {
+      handleApiError(error, "Get Assignments");
+    }
+  },
+
+
+// Used for getting assignments to students.
+  getWorkSpcaceAssignments: async (workspaceId) => {
+    try {
+      const response = await api.get(`/assignments/${workspaceId}`);
       return response.data;
     } catch (error) {
       handleApiError(error, "Get Assignments");

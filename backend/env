@@ -1,3 +1,4 @@
-DATABASE_URL=
-AI_API_KEY=
-TOKEN_SECRET=
+DATABASE_URL="mongodb+srv://trulyhawona:C59FfcTlWsnmXQa6@cluster0.4cbmtsc.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+
+GEMINI_API_KEY=AIzaSyBbpkxyMQWxStr_gD6zO13u2W34ZzBXUsg
+TOKEN_SECRET=my_secret

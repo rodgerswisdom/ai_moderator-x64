@@ -22,7 +22,7 @@ export default function Workspace() {
       setLoading(true);
       console.log(`Fetching workspace for User ID: ${userId}`);
 
-      const workspaceData = await workspaceService.getUserWorkspaces(userId);
+      const workspaceData = await workspaceService.getUserWorkspace(userId);
       console.log("Workspaces Data:", workspaceData);
 
       setWorkspace(workspaceData);
