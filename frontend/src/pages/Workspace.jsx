@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { workspaceService, assignmentService } from '../services/api';
 
 export default function Workspace() {
   const navigate = useNavigate();
+  const { id } = useParams(); // Get workspace ID from the URL
   const { user, isEducator } = useAuth();
   const [workspace, setWorkspace] = useState(null);
   const [assignments, setAssignments] = useState([]);
@@ -12,25 +13,31 @@ export default function Workspace() {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    if (user?.id) {
-      loadWorkspaceData(user.id);
+    if (id) {
+      loadWorkspaceData(id);
+      loadAssignments(id);
     }
-  }, [user?.id]);
+  }, [id]);
 
-  const loadWorkspaceData = async (userId) => {
+  const loadWorkspaceData = async (workspaceId) => {
     try {
       setLoading(true);
-      console.log(`Fetching workspace for User ID: ${userId}`);
-
-      const workspaceData = await workspaceService.getUserWorkspace(userId);
-      console.log("Workspaces Data:", workspaceData);
-
+      const workspaceData = await workspaceService.getWorkspaceById(workspaceId);
       setWorkspace(workspaceData);
     } catch (err) {
       setError('Failed to load workspace data');
       console.error('Error loading workspace:', err);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const loadAssignments = async (workspaceId) => {
+    try {
+      const assignmentsData = await assignmentService.getWorkSpcaceAssignments(workspaceId);
+      setAssignments(assignmentsData || []);
+    } catch (err) {
+      console.error('Error loading assignments:', err);
     }
   };
 

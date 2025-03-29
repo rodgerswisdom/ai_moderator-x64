@@ -32,7 +32,7 @@ function App() {
               }
             />
             <Route
-              path="/workspaces/:id"
+              path="/workspace/:id"
               element={
                 <ProtectedRoute>
                   <Workspace />

@@ -13,10 +13,13 @@ export default function Dashboard() {
   const [assignments, setAssignments] = useState([]);
   const [selectedAssignment, setSelectedAssignment] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [activeSection, setActiveSection] = useState('workspaces'); // For educator sidebar navigation
 
   useEffect(() => {
-    loadWorkspaces();
-    loadStudentWorkspaces();
+    if (isStudent) {
+      loadWorkspaces();
+      loadStudentWorkspaces();
+    }
   }, []);
 
   useEffect(() => {
@@ -68,6 +71,10 @@ export default function Dashboard() {
     setSelectedAssignment(assignment);
   };
 
+  const handleSectionChange = (section) => {
+    setActiveSection(section);
+  };
+
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
@@ -78,7 +85,7 @@ export default function Dashboard() {
 
   if (isStudent) {
     return (
-      <div className="container mx-auto px-4 py-8  bg-gray-100 w-screen h-screen">
+      <div className="container mx-auto px-4 py-8 bg-gray-100 w-screen h-screen">
         <div className="grid grid-cols-12 gap-4 h-full">
           {/* Left Panel: Student Profile and Workspaces */}
           <div className="col-span-3 bg-gray-100 p-4 rounded-lg shadow-md">
@@ -132,46 +139,78 @@ export default function Dashboard() {
     );
   }
 
-  return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold text-gray-800">
-          Welcome, {user?.f_name} {user?.l_name}
-        </h1>
-        {isEducator && (
-          <button
-            onClick={() => navigate('/workspaces')}
-            className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg"
-          >
-            Create New Workspace
-          </button>
-        )}
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {workspaces.map((workspace) => (
-          <div
-            key={workspace._id}
-            className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow cursor-pointer"
-            onClick={() => navigate(`/workspace/${workspace._id}`)}
-          >
-            <h2 className="text-xl font-semibold text-gray-800 mb-2">{workspace.name}</h2>
-            <div className="flex justify-between items-center text-sm text-gray-500">
-              <span>{workspace.students.length} students</span>
-            </div>
+  if (isEducator) {
+    return (
+      <div className="flex h-screen">
+        {/* Sidebar Panel */}
+        <div className="w-1/4 bg-gray-800 text-white flex flex-col">
+          <div className="p-4 border-b border-gray-700">
+            <h2 className="text-2xl font-bold">Educator Panel</h2>
+            <p className="text-sm text-gray-400">Welcome, {user?.f_name} {user?.l_name}</p>
           </div>
-        ))}
-      </div>
-
-      {workspaces.length === 0 && (
-        <div className="text-center py-12">
-          <p className="text-gray-600 text-lg">
-            {isEducator
-              ? "You haven't created any workspaces yet. Create one to get started!"
-              : "You haven't joined any workspaces yet."}
-          </p>
+          <nav className="flex-1 p-4 space-y-4">
+            <button
+              className={`w-full text-left px-4 py-2 rounded-lg ${
+                activeSection === 'workspaces' ? 'bg-gray-700' : 'hover:bg-gray-700'
+              }`}
+              onClick={() => handleSectionChange('workspaces')}
+            >
+              Workspaces
+            </button>
+            <button
+              className={`w-full text-left px-4 py-2 rounded-lg ${
+                activeSection === 'assignments' ? 'bg-gray-700' : 'hover:bg-gray-700'
+              }`}
+              onClick={() => handleSectionChange('assignments')}
+            >
+              Assignments
+            </button>
+            <button
+              className={`w-full text-left px-4 py-2 rounded-lg ${
+                activeSection === 'students' ? 'bg-gray-700' : 'hover:bg-gray-700'
+              }`}
+              onClick={() => handleSectionChange('students')}
+            >
+              Students
+            </button>
+          </nav>
+          <div className="p-4 border-t border-gray-700">
+            <button
+              className="w-full text-left px-4 py-2 rounded-lg hover:bg-gray-700"
+              onClick={() => navigate('/logout')}
+            >
+              Logout
+            </button>
+          </div>
         </div>
-      )}
-    </div>
-  );
+
+        {/* Main Content Area */}
+        <div className="flex-1 bg-gray-100 p-6 overflow-y-auto">
+          {activeSection === 'workspaces' && (
+            <div>
+              <h2 className="text-2xl font-bold mb-4">Your Workspaces</h2>
+              <p>Here you can manage your workspaces.</p>
+              {/* Add workspace management UI here */}
+            </div>
+          )}
+          {activeSection === 'assignments' && (
+            <div>
+              <h2 className="text-2xl font-bold mb-4">Your Assignments</h2>
+              <p>Here you can manage your assignments.</p>
+              {/* Add assignment management UI here */}
+            </div>
+          )}
+          {activeSection === 'students' && (
+            <div>
+              <h2 className="text-2xl font-bold mb-4">Your Students</h2>
+              <p>Here you can view and manage your students.</p>
+              {/* Add student management UI here */}
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  }
+
+  return null;
 }
