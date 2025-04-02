@@ -12,7 +12,7 @@ const port = process.env.PORT || 3000;
 
 // CORS configuration
 const corsOptions = {
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173', // Vite's default port
+  origin: process.env.FRONTEND_URL || 'https://masomohub-ac-ke-ti95.vercel.app', // Vite's default port
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
